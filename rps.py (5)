@@ -1,0 +1,72 @@
+#rock paper scissors
+#a simple Python program that allows the player to play the classic game of "Rock-Paper-Scissors" against the computer
+#the game involves selecting either rock, paper, or scissors and comparing the choices to determine the winner
+#the program should also keep track of the score and give the player the option to play again
+
+
+#init
+import random
+player_score = 0
+computer_score = 0
+
+
+
+#functions
+def rps():
+    global player_score
+    global computer_score
+    print("Welcome to rps!")
+    print("You will play 3 rounds against the computer.")
+    print("Type: rock, paper, or scissors")
+
+    rounds = 0
+
+    while True:
+        if rounds == 3:
+            break
+        print("Round", round, 1)
+        player = input("your choice: ")
+        if player != "rock" and player != "paper" and player != "scissors":
+            print("invalid input. Please type rock, paper, scissors.")
+            continue
+        #computer choice
+        rsp = random.randint(1,3)
+        print("choose between 1 and 3")
+        if rsp == 1:
+            computer = "rock"
+        elif rsp == 2:
+            computer = "paper"
+        else:
+            computer = "scissors"
+        print("Computer chose:", computer)
+        #determining the winner
+        if player == computer:
+            print("It's a tie!")
+        elif player == "rock" and computer == "scissors":
+            print("You win this round!")
+            player_score += 1
+        elif player == "scissors" and computer == "paper":
+            print("You win this round!")
+            player_score += 1
+        elif player == "paper" and computer == "rock":
+            print("You won this round!")
+            player_score += 1
+        else:
+            print("Computer wins this round!")
+            computer_score += 1
+        # show score
+        print("Score -> Player:", player_score, "/ Computer:", computer_score)
+        rounds += 1
+        #final results
+        print("final results")
+        print("Player:", player_score)
+        print("Computer:", computer_score)
+        if player_score > computer_score:
+            print("You won the game!")
+        elif computer_score > player_score:
+            print("The computer won the game!")
+        else:
+            print("The game is a tie!")
+
+#main
+rps()

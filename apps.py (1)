@@ -1,0 +1,132 @@
+#apps
+#student will create a fully working app in python
+#CREATE TASK
+
+#init
+import random
+import time
+
+#global data (lists)
+workouts = ["Push Day", "Pull Day", "Leg Day"]
+push_exercises = ["Bench Press", "Push Ups", "Shoulder Press"]
+pull_exercises = ["Pull Ups", "Rows", "Lat Pulldown"]
+leg_exercises = ["Squats", "Lunges", "Leg Press"]
+meals = ["Chicken and Rice", "Steak and Potatoes", "Protein Shake", "Eggs and Toast"]
+
+#global score (tracks progress)
+score = 0
+
+
+#functions
+def welcome():
+    print("Welcome to the Fitness App!")
+    print("Your goal: Get stronger every day!")
+
+
+#main menu (while loop)
+def main():
+    welcome()
+
+    while True:
+        print("Choose an option:")
+        print("1. Train")
+        print("2. Eat")
+        print("3. Rest")
+        print("4. Progress")
+        print("5. Quit")
+
+        choice = input("Enter choice: ")
+
+        if choice == "1":
+            train()
+        elif choice == "2":
+            eat()
+        elif choice == "3":
+            rest()
+        elif choice == "4":
+            progress()
+        elif choice == "5":
+            print("Goodbye! Stay strong")
+            break
+        else:
+            print("Invalid input, try again")
+
+
+
+def train():
+    global score
+    print("--- TRAINING SESSION ---")
+
+    #choose workout type
+    choice = random.choice(workouts)
+    print("Today's workout:", choice)
+
+    #conditional logic
+    if choice == "Push Day":
+        exercises = push_exercises
+    elif choice == "Pull Day":
+        exercises = pull_exercises
+    else:
+        exercises = leg_exercises
+
+    #loop through exercises
+    for i in range(len(exercises)):
+        print("Exercise:", exercises[i])
+        done = input("Did you complete it? (yes/no): ")
+
+        if done.lower() == "yes":
+            print("Good work!")
+            score += 1
+        else:
+            print("Push harder next time!")
+
+    print("Workout complete!")
+
+
+def eat():
+    global score
+    print("--- MEAL TIME ---")
+
+    meal = random.choice(meals)
+    print("Recommended meal:", meal)
+
+    answer = input("Did you eat this meal? (yes/no): ")
+    if answer.lower() == "yes":
+        print("Great nutrition!")
+        score += 1
+    else:
+        print("Fuel matters!")
+
+    print()
+
+
+def rest():
+    print("--- REST DAY ---")
+    print("Recovery is important")
+    time.sleep(1)
+    print("You feel refreshed!")
+
+
+def progress():
+    print("--- PROGRESS REPORT ---")
+    print("Your fitness score:", score)
+    if score >= 5:
+        print("You're improving fast!")
+    else:
+        print("Keep going, stay consistent!")
+    print()
+
+
+
+#main
+main()
+#welcome
+welcome()
+#train
+train()
+#eat
+eat()
+#rest
+rest()
+#progress
+progress()

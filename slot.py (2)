@@ -1,0 +1,76 @@
+#slot machine
+#students will build a 3-Slot Machine in Python
+
+
+#init
+import random
+import time
+symbols = ['♥', '♦', '♠', '♣', '7']
+credits = 100
+spin_cost = 10
+highest_credits = credits
+
+
+#function
+def spin_slots():
+    return [random.choice(symbols), random.choice(symbols), random.choice(symbols)]
+
+def check_win(slot):
+    global credits
+    #jackpots
+    if slot[0] == '7' and slot[1] == '7' and slot[2] == '7':
+        credits += 100
+        return
+    #all three matches
+    if slot[0] == slot[1] == slot[2]:
+        print("congratulations! you won!")
+        credits += 50
+        return
+    #two match + wildcard 7
+    if '7' in slot and (slot.count(slot[0]) == 2 or slot.count(slot[1]) == 2):
+        print("wildcard win!")
+        credits += 30
+        return
+    #loss
+    print("sorry, no match this time.")
+
+# ---------------- main game loop ----------------
+print("==== welcome to the 3-slot machine =====")
+print("slot machine symbols:", symbols)
+print(f"you have {credits} credits. each spin costs {spin_cost} credits." )
+print("press 's' to spin or 'q' to quit.")
+
+while True:
+    print("credits: {credits}")
+    if credits < spin_cost:
+        print("you ran out of credits!")
+        break
+    choice = input("spin the slot? (s/q): ")
+    if choice == 'q':
+        break
+    elif choice == 's':
+        credits -= spin_cost
+        print("spinning...")
+        time.sleep(1)
+        slot = spin_slots()
+        print("current slots: [{slots[0]}] [{slots[1]}] [{slots[2]}]")
+        check_win(slot)
+        if credits > highest_credits:
+            highest_credits = credits
+            print()
+        else:
+            print("invalid input. please press 's' or 'q' ")
+            continue
+
+# ----------------- end game ----------------
+print("===== thank you for playing! =====")
+print(f"final credits: {credits}")
+print(f"highest credits reached: {highest_credits}")
+
+#main
+spin_slots()
+check_win(slot)
+
+
+
+

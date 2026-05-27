@@ -1,0 +1,99 @@
+#dog breed (create task)
+#the purpose of this program is to help the users to find a dog that fits their needs
+
+#init
+import pandas as pd
+import random
+
+dogs = pd.read_csv("dog.csv")
+
+names = dogs["name"].tolist()
+min_weight = dogs["min_weight"].tolist()
+temperature = dogs["temperature"].tolist()
+image = dogs["image"].tolist()
+bredfor = dogs["bred_for"].tolist()
+
+
+#functions
+#goal 2
+def getDogSize(size):
+    matching_dogs = []
+    for i in range(len(names)):
+        weight = min_weight[i]
+        if size == "tiny" and weight <= 10:
+            matching_dogs.append(names[i])
+        elif size == "small" and 11 <= weight <= 25:
+            matching_dogs.append(names[i])
+        elif size == "medium" and 26 <= weight <= 60:
+            matching_dogs.append(names[i])
+        elif size == "large" and weight > 60:
+            matching_dogs.append(names[i])
+            if len(matching_dogs) > 0:
+                choice = random.choice(matching_dogs)
+                print("recommended dog breed:", choice)
+            else:
+                print("no breeds found for that size")
+
+
+#goal 3
+def getBreedInfo(breed_name):
+    found = False
+    for i in range(len(names)):
+        if names[i].lower() == breed_name.lower():
+        print("breed:", names[i])
+    print("temperament:" temperament[i])
+    print("image:", image[i])
+    found = True
+    break
+if not found:
+    print("breed not found")
+
+
+#goal 4
+def getDogByPurpose(purpose):
+    matches = []
+    for i in range(len(names)):
+        if isinstance(bredfor[i], str):
+            if purpose.lower() in bredfor[i].lower():
+                matches.append(names[i])
+                if len(matches) > 0:
+                    print("dogs bred for", purpose, ":")
+                    for dog in matches:
+                        print("-", dog)
+                    else:
+                        print("no breeds found for that purpose")
+
+
+#main menu
+running = True
+while running:
+    print("dog finder menu")
+    print("1. find a dog by size")
+    print("2. look up a dog breed")
+    print("3. find dogs by purpose")
+    print("4. quit")
+    choice = input("enter choice: ")
+    if choice == "1":
+        size = input("enter size (tiny, small, medium, large): ")
+        getDogSize(size)
+    elif choice == "2":
+        breed = input("enter dog breed: ")
+        getBreedInfo(breed)
+    elif choice == "3":
+        purpose = input("enter purpose (companion, guarding, herding, etc): ")
+        getDogByPurpose(purpose)
+    elif choice == "4":
+        print("goodbye!")
+        running = False
+    else:
+        print("invalid choice. try again")
+
+
+#main
+#sources of information
+#dog dataset
+#website name: Code.org
+#URL: https://code.org/en-US
+#dataset source: https://thedogapi.com/en
+
+

@@ -1,0 +1,35 @@
+#Adventure
+#Student asks takes users on a mini text adventure. Each choice leads to a new situation using nested if statement…
+
+
+#Function
+def adventure():
+    print("You Go on a Adventure, hoping to something out of it!")
+
+    #Collect 1st input from user
+    trail = input("Do you want to go on a good or bad trail? ")
+
+    #Good Recommendation
+    if trail == "good":
+        bless_by_leprechaun = input("Do you want infinite money (yes,no)? ")
+        if bless_by_leprechaun == "yes":
+            print("Infinite Money!")
+        bless_by_god = input("Do you want gain any superpower (yes,no)? ")
+        if bless_by_god =="yes":
+            print("Any superpower!")
+    #Bad Recommendation
+    if trail == "bad":
+        cursed_by_a_witch = input("Do you want to suffocate every minute (yes,no)? ")
+        if cursed_by_a_witch == "yes":
+            print("suffocate every minute:(")
+        drank_a_poisonous_potion = input("Do you want to die in one week (yes,no)? ")
+        if drank_a_poisonous_potion == "yes":
+            print("Die in one week:(")
+#Main
+adventure()
+
+
+
+
+
+
